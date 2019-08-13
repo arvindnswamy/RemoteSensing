@@ -22,7 +22,9 @@ import numpy as np
 #landsatname = 'LC08_L1TP_203042_20190529_20190605_01_T1' #More western sahara
 landsatname =  'LC08_L1TP_205042_20190527_20190605_01_T1' #More Western Sahara and water
 
-os.chdir('/home/arvindn/Research/TopicsOfInterest/Agriculture/Notes/LandsatImages/'+landsatname)
+landsatname = 'LC08_L1TP_144048_20180310_20180320_01_T1' #Hyderabad
+
+os.chdir('/home/arvindn/Research/TopicsOfInterest/Agriculture/Notes/LandsatImages/BulkOrder1026953_Hyderabad/Landsat 8 OLI_TIRS C1 Level-1/'+landsatname)
 landsatimage1 = landsatname + '_B4.TIF'
 landsatimage2 = landsatname + '_B5.TIF'
 rasterimB4 = rio.open(landsatimage1, 'r')
@@ -43,6 +45,18 @@ ndviImage = rio.open('./ndviImage_uint8.tiff','w',driver='Gtiff',
                           dtype='uint8')
 ndviImage.write(rasterNDVI_uint8,1)
 ndviImage.close()
+
+rasterNDVI_uint8 = (NDVI*255).astype('uint8')
+ndviImage = rio.open('./ndviImage_uint8_NoAbs.tiff','w',driver='Gtiff',
+                          width=rasterimB4.width, 
+                          height = rasterimB4.height, 
+                          count=1, crs=rasterimB4.crs, 
+                          transform=rasterimB4.transform, 
+                          dtype='uint8')
+ndviImage.write(rasterNDVI_uint8,1)
+ndviImage.close()
+
+plt.imsave('testingNDVI.jpg', rasterNDVI_uint8)
 
 ndviGeotiffImage = rio.open('ndviImage_uint8.tiff', 'r')
 
