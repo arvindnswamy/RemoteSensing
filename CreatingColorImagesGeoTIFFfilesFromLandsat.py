@@ -60,9 +60,11 @@ pX, pY, pZ = imageR2.shape
 
 
 image2comp = np.zeros((pX, pY, pZ), dtype=np.uint8)
-image2comp[:,:,0] = imageR2[:,:,0]
-image2comp[:,:,1] = imageG2[:,:,0]
-image2comp[:,:,2] = imageB2[:,:,0]
+
+image2comp[:, :, 0] = imageR2[:, :, 0]
+image2comp[:, :, 1] = imageG2[:, :, 0]
+image2comp[:, :, 2] = imageB2[:, :, 0]
+
 cv2.imwrite(dirname+'_B2B3B4.TIF', image2comp)
 
 
@@ -72,16 +74,16 @@ band = ('B2', 'B3', 'B4')
 for i, colors in enumerate(col):
     histr = cv2.calcHist([image2comp], [i], None, [256], [1,256])
     ax1.plot(histr, color=colors)
-    
 
-imageR2equ = cv2.equalizeHist(imageR2[:,:,0])
-imageG2equ = cv2.equalizeHist(imageG2[:,:,0])
-imageB2equ = cv2.equalizeHist(imageB2[:,:,0])
+
+imageR2equ = cv2.equalizeHist(imageR2[:, :, 0])
+imageG2equ = cv2.equalizeHist(imageG2[:, :, 0])
+imageB2equ = cv2.equalizeHist(imageB2[:, :, 0])
 
 image2equcomp = np.zeros((pX, pY, pZ), dtype=np.uint8)
-image2equcomp[:,:,0] = imageR2equ
-image2equcomp[:,:,1] = imageG2equ
-image2equcomp[:,:,2] = imageB2equ
+image2equcomp[:, :, 0] = imageR2equ
+image2equcomp[:, :, 1] = imageG2equ
+image2equcomp[:, :, 2] = imageB2equ
 cv2.imwrite(dirname+'_B2B3B4_EqualHist.TIF', image2equcomp)
 
 
