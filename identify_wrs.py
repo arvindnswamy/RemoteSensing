@@ -6,6 +6,7 @@ Module to identify WRS path and rows from Lat and Long
 """
 
 import io
+
 import ogr
 import osgeo
 import shapely.wkt
@@ -52,8 +53,8 @@ shapefile_directory = 'landsat-path-row/WRS2_descending.shp'
 wrs = ogr.Open(shapefile_directory)
 layer = wrs.GetLayer(0)
 
-lon = - 74.0060
-lat = 40.7128
+lon = 80.2707  # - 74.0060
+lat = 13.0827    #40.7128
 point = shapely.geometry.Point(lon, lat)
 mode = 'D'
 

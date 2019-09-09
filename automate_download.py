@@ -40,9 +40,11 @@ def download_landsat(specified_path, specified_row, save_directory):
     geography_filter = (all_scenes.path == path) & (all_scenes.row == row)
 
     cloud_cover_filter = (all_scenes.cloudCover <= 5)
+
     relevancy_filter = (~all_scenes.productId.str.contains('_T2')) & (~all_scenes.productId.str.contains('_RT'))
 
-    relevant_scenes = all_scenes.loc[(geography_filter & cloud_cover_filter & relevancy_filter), :]
+    relevant_scenes = all_scenes.loc[(geography_filter & cloud_cover_filter & relevancy_filter), :].copy()
+
 
     for index, row in relevant_scenes.iterrows():
 
@@ -86,6 +88,14 @@ def download_landsat(specified_path, specified_row, save_directory):
 
     return
 
+
+specified_path = 142
+specified_row = 51
+
+
+# Ortho-rectified data?
+# only until 2013?
+# Sentinel API to download the data
 
 iter_path = 13
 iter_row = 32

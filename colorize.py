@@ -4,6 +4,7 @@ from glob import glob
 import matplotlib.pyplot as plt
 import gdal
 import cv2
+
 import numpy as np
 import scipy.misc as sm
 
@@ -14,7 +15,6 @@ import scipy.misc as sm
 
 # the_save_directory = "/Users/praga/Documents/Analytics/Earth Analytics/Landsat Images/"
 #
-#
 # for image_path in glob(os.path.join(the_save_directory, '*/*B10.TIF')):
 #
 #     with rasterio.open(image_path) as src_raster:
@@ -22,7 +22,6 @@ import scipy.misc as sm
 #         xmax.append(src_raster.bounds.right)
 #         ymin.append(src_raster.bounds.bottom)
 #         ymax.append(src_raster.bounds.top)
-#
 
 
 file_directory = "/Users/praga/Documents/Analytics/Earth Analytics/Landsat Images/"
@@ -114,6 +113,10 @@ f.savefig('myfigure.png')
 # Plot the true-color image
 rgb = np.dstack((imageR2clahe, imageG2clahe, imageB2clahe))
 plt.imshow(rgb)
+
+
+
+band_numbers = [4, 5, 2]
 
 
 
